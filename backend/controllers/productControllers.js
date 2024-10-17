@@ -1,18 +1,26 @@
 const ProductModel = require('../models/productModel');
 
+//Get Products API - /api/v1/products
 exports.getProducts = async (req, res, next) => {
-
     const products = await ProductModel.find({});
-
     res.json({
         success: true,
         products
     })
 }
 
-exports.getSingleProducts = (req, res, next) => {
-    res.json({
+//Get Single Products API - /api/v1/product/:id
+exports.getSingleProducts = async (req, res, next) => {
+    try {
+        const product = await ProductModel.findById(req.params.id);
+        res.json({
         success: true,
-        message: 'Get single product working!'
-    })
+        product
+        })        
+    } catch (error) {
+        res.status(404).json({
+        success: false,
+        message: 'Unable to get product with that ID'
+        })
+    }
 }
