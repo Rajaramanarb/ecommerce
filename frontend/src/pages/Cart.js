@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function Cart({cartItems, setCartItems}) {
     const [complete, setComplete] = useState(false);
@@ -109,10 +109,9 @@ export default function Cart({cartItems, setCartItems}) {
                         </div>
                     </div>
                 </div>
-            </Fragment> : {!complete ? <h2 className='mt-5'>Your Cart is Empty!</h2> 
+            </Fragment> : !complete ? <h2 className='mt-5'>Your Cart is Empty!</h2> 
                             : <Fragment>
                                 <h2 className='mt-5'>Order complete!</h2>
                                 <p>Your order has been placed successfully.</p>
                             </Fragment>
-                        }
                 }
