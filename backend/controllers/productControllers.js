@@ -6,7 +6,7 @@ exports.getProducts = async (req, res, next) => {
         $regex: req.query.keyword,
         $options: 'i'
     }}:{}
-    const products = await ProductModel.find({});
+    const products = await ProductModel.find(query);
     res.json({
         success: true,
         products
