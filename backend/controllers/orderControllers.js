@@ -1,5 +1,5 @@
 const orderModel = require('../models/orderModels');
-const productModel = require('../models/productModels');
+const productModel = require('../models/productModel');
 
 //Create order - /api/v1/order
 exports.createOrder =async (req, res, next) => {
@@ -14,7 +14,7 @@ exports.createOrder =async (req, res, next) => {
         product.stock = product.stock - item.qty;
         await product.save();
     })
-    
+
     res.json (
         {
             success: true,
